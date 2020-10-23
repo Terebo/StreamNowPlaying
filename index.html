@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
+<html>
+
+<head>
+    <style>
+        #maincontainer {
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            align-content: center;
+        }
+
+        #maincontainer * {
+            display: inline-block;
+        }
+
+        video {
+            height: 100%;
+            display: inline-block;
+        }
+
+        #textwrapper {
+            display: inline-block;
+            margin-top: -0.5em;
+            display: none;
+        }
+
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2em;
+            background-color: #202225;
+            color: #E6E6E6;
+            padding: 0.2em;
+        }
+    </style>
+    <script>
+        var Oldtitle = "";
+        var Newtitle;
+        check();
+        setInterval(() => {
+            check();
+        }, 1000);
+
+        function check() {
+            $.get("http://localhost:8080/music.txt",
+                function (data, textStatus, jqXHR) {
+                    Newtitle = data;
+                    console.log(Newtitle)
+                    console.info(Newtitle !== Oldtitle);
+                    if (Newtitle !== Oldtitle) {
+                        document.getElementById("vid").play();
+                        document.getElementById("text").innerText = Newtitle;
+                        $("#textwrapper").fadeIn();
+                    }
+                    Oldtitle = Newtitle;
+                },
+                "text"
+            );
+        }
+
+
+        function vidended() {
+            $("#textwrapper").fadeOut();
+        }
+        window.onload = function () {
+            console.log(document.getElementById("vid"));
+            document.getElementById("vid").addEventListener('ended', vidended, false);
+        }
+
+    </script>
+</head>
+
+<body style="margin: 0;">
+    <div id="maincontainer">
+        <video id="vid">
+            <source src="vid.webm" type="video/webm">
+        </video><div id="textwrapper">
+        <p id="text">Something went wrong</p>
+        </div>
+    </div>
+</body>
+
+</html>
