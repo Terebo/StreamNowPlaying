@@ -10,8 +10,8 @@ This project can tell your viewers what you're listening in VLC to at the moment
 		        All Users: %ProgramFiles%\VideoLAN\VLC\lua\extensions\
 	 - Mac OS X:   Current User: /Users/%your_name%/Library/Application Support/org.videolan.vlc/lua/extensions/
 		        All Users: /Applications/VLC.app/Contents/MacOS/share/lua/extensions/
-- don't forget to click the checkmark under view>now playing in texts every time you start VLC or change playlist
-- Replace ``YOUR PATH TO MUSIC.TXT HERE`` in this file with your path, music.txt has to be in the same directory as the rest of the server
+- don't forget to click the checkmark under view>now playing in texts in VLC every time you start VLC or change playlist
+- Replace ``YOUR PATH TO MUSIC.TXT HERE`` in the .lua file with your path, music.txt has to be in the same directory as the rest of the server
 - place the rest of the files in the same directory as music.txt. set up your node environment here and run the server using the command ``node start index.js``
 - add a browser source to OBS/Xslpit/whatever streaming software you use and link it to ``http://loacalhost:8080``
 ## a few notes
